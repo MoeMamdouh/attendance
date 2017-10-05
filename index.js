@@ -66,7 +66,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch("http://0.0.0.0:5050/records")
+    fetch("http://192.168.2.5:5050/records")
       .then(response => response.json())
       .then(data => {
         console.log('Data : ', data);
