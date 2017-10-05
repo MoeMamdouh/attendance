@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-// import { DatePicker, message, InputGroup, Select, Option, Icon } from 'antd';
+import Charts from "./src/views/Chart";
 import {
   Input,
   Col,
@@ -106,7 +106,6 @@ class App extends React.Component {
       <LocaleProvider locale={enUS}>
         <div style={{ width: "600px", margin: "100px auto" }}>
           <Icon type="question" style={{ fontSize: 16, color: "#08c" }} />
-
           <InputGroup compact>
             <DatePicker onChange={value => this.handleChange(value)} />
             <DatePicker onChange={value => this.handleChange(value)} />
@@ -125,6 +124,24 @@ class App extends React.Component {
             Date: {this.state.date.toString()}
           </div>
           <UsersList />
+          <InputGroup compact>
+            <DatePicker onChange={value => this.handleChange(value)} />
+            <DatePicker onChange={value => this.handleChange(value)} />
+            <Cascader
+              style={{ width: "20%" }}
+              options={persons}
+              placeholder="Select Name"
+            />
+            <Cascader
+              style={{ width: "20%" }}
+              options={departments}
+              placeholder="Select Name"
+            />
+          </InputGroup>
+          <div style={{ marginTop: 20 }}>
+            Date: {this.state.date.toString()}
+          </div>
+          <Charts />
         </div>
       </LocaleProvider>
     );
