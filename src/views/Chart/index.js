@@ -13,21 +13,21 @@ class Charts extends Component {
     }
 
     componentWillMount() {
-        fetch('http://192.168.2.5:5050/records?name=Mohamed Ahmed Azazy&from=2017-09-07T00:00:00&to=2017-9-14T00:00:00')
+        const { type, user, from, to } = this.props;
+        fetch(`http://192.168.2.5:5050/records?name=${user}&from=${from}&to=${to}`)
             .then(response => response.json())
             .then(data => {
                 // console.log('Data : ', data);
                 const name = Object.keys(data);
-                this.setState({ persons: data, employeeName: name[0] });
+                this.setState({ persons: data, employeeName: user });
                 const employeeyData = data[name[0]].data;
                 // console.log(employeeyData);
                 const xy = [];
                 employeeyData.map(item => {
-                    const employeeXY = _.pick(item, ['date', 'checkIn']);
+                    const employeeXY = _.pick(item, ['date', type]);
                     const parsedDate = Moment(employeeXY.date).utc().day();
                     const parsedCheckIn = Moment(employeeXY.checkIn).hour();
                     xy.push([parsedDate, parsedCheckIn]);
-                    // this.setState({ xy: this.state.xy.push([employeeXY.date, employeeXY.checkIn]) });
                 });
 
                 this.setState({ xy: xy.sort() });
@@ -35,7 +35,6 @@ class Charts extends Component {
     }
 
     render() {
-        var data = [[1, 1], [2, 2], [3, 3], [4, 4], [5, 5]];
         const { employeeName, xy } = this.state;
 
         var config = {
@@ -45,6 +44,14 @@ class Charts extends Component {
             title: {
                 text: employeeName,
             },
+            // xAxis: {
+            //     type: 'datetime',
+            //     labels: {
+            //         format: '{value:%m-%d}',
+            //         rotation: 45,
+            //         align: 'left'
+            //     }
+            // },
             series: [
                 {
                     name: 'DAYS',
