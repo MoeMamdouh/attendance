@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Table, Icon } from "antd";
-
+import { Table, Icon, Alert } from "antd";
+import Chart from './../src/views/Chart';
 const columns = [
   {
     title: "Date",
@@ -16,10 +16,11 @@ const columns = [
     title: "Check Out",
     dataIndex: "checkOut",
     key: "checkOut"
-  },{
+  },
+  {
     title: "Duration",
     dataIndex: "duration",
-    key: "duration",
+    key: "duration"
   }
 ];
 
@@ -29,9 +30,19 @@ class UserTable extends Component {
   };
   render() {
     const state = this.state;
+    const description = `Total Durations Spent: ${this.props.userData["calculations"]["total_duration"]}  Expected Duration : ${this.props.userData["calculations"]["expected_duration"]}`;
     return (
       <div>
         <Table columns={columns} dataSource={this.props.userData["data"]} />
+        <Alert
+          message="Calculations"
+          description={description}
+          type="info"
+          showIcon
+        >
+        </Alert>
+        <Chart data= {this.props.userData} type="checkIn" />
+				<Chart data= {this.props.userData}  type="checkOut" />
       </div>
     );
   }
