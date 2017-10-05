@@ -7,7 +7,7 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { person: [] };
+    this.state = { persons: [] };
   }
 
   componentDidMount() {
@@ -15,30 +15,39 @@ class App extends Component {
   }
 
   UserList() {
-    fetch("https://randomuser.me/api/")
+    fetch("http://0.0.0.0:5050/records")
       .then(response => response.json())
-      .then(results => {
-        console.log(results);
-        this.setState({ person: results.results });
+      .then(data => {
+        console.log('Data : ', data);
+        this.setState({ persons: data });
         // axios.get('https://randomuser.me/api/')
         //   .then(({ results }) => this.setState({ person: results }));
       })
     }
 
   render() {
-    console.log(this.state.person)
-    const persons = this.state.person.map((item, i) => (
-      <div>
-        <h1>{item.name.first}</h1>
-        <span>{item.cell}, {item.email}</span>
-      </div>
-    ));
-
-    return (
-      <div id="layout-content" className="layout-content-wrapper">
-        <div className="panel-list">{persons}</div>
-      </div>
-    );
+    const personsObject = this.state.persons;
+    const persons = Object.keys(personsObject)
+    if(persons.length) {
+      console.log('persons ', persons)
+      const personsData = persons.map((item, i) => (
+        <div>
+          <h1>{item}</h1>
+          <span>{this.state.persons[item].calculations.expected_duration}</span>
+        </div>
+      ));
+  
+      return (
+        <div id="layout-content" className="layout-content-wrapper">
+          <div className="panel-list">{personsData}</div>
+        </div>
+      );
+    } else {
+      return (
+        <span>Loading...</span>
+      )
+    }
+    
   }
 }
 
