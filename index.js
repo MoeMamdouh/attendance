@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import Charts from './src/views/Chart';
 import Header from './src/views/Header/';
 import UsersList from './Components/UsersList';
+import { LocaleProvider } from 'antd';
+import enUS from 'antd/lib/locale-provider/en_US';
 
 class App extends React.Component {
   constructor(props) {
@@ -13,11 +15,14 @@ class App extends React.Component {
 
   render() {
     return (
-      <div style={{ width: "80%", margin: '100px auto' }}>
-        <Header />
-        <UsersList/>
-        <Charts />
-      </div>
+      <LocaleProvider locale={enUS}>
+        <div style={{ width: "80%", margin: '100px auto' }}>
+          <Header />
+          <UsersList />
+          <Charts />
+        </div>
+      </LocaleProvider>
+
     )
   }
 }
