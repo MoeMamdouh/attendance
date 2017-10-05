@@ -19,7 +19,8 @@ class App extends React.Component {
         <div style={{ width: "80%", margin: '100px auto' }}>
           <Header />
           <UsersList />
-          <Charts />
+          <Charts user="Ahmed Nabil Elsayed" type="checkIn" from="2017-09-07T00:00:00" to="2017-9-14T00:00:00" />
+          <Charts user="Ahmed Nabil Elsayed" type="checkOut" from="2017-09-07T00:00:00" to="2017-9-14T00:00:00" />
         </div>
       </LocaleProvider>
 
