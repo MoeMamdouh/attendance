@@ -4,6 +4,15 @@ import UserTable from "./UserTable";
 const Panel = Collapse.Panel;
 
 class UsersList extends Component {
+  constructor(props) {
+    super(props);
+    
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log("UsersList props: ", nextProps)
+  }
+
   render() {
     // const text = `
     //     A dog is a type of domesticated animal.
