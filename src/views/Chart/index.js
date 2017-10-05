@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 // import './Chart.css';
-import { Route } from 'react-router';
 const ReactHighcharts = require('react-highcharts'); // Expects that Highcharts was loaded in the code.
 const ReactHighstock = require('react-highcharts/ReactHighstock');
 import _ from 'lodash';
