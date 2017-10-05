@@ -35,7 +35,6 @@ class Charts extends Component {
     }
 
     render() {
-        var data = [[1, 1], [2, 2], [3, 3], [4, 4], [5, 5]];
         const { employeeName, xy } = this.state;
 
         var config = {
